@@ -1,7 +1,5 @@
 class FilmsController < ApplicationController
   before_action :authenticate_user!
-  require 'net/http'
-  require 'json'
   def index
     getMovies
     if params[:sort].present?
@@ -9,24 +7,25 @@ class FilmsController < ApplicationController
       @movies.sort_by! { |movie| movie[sort_param] }
     end
   end
-  def getMovies
-    @url = 'https://swapi.dev/api/films/'
-    @uri = URI(@url)
-    @response = Net::HTTP.get(@uri)
-    @output = JSON.parse(@response)
-    @movies = @output['results']
-  end
   def film
   end
   def get_movie_info
     @movie = params[:movie]
-    @charactersName = []
+    @characters = []
     @movie['characters'].each do |character|
       url = character
       uri = URI(url)
       response = Net::HTTP.get(uri)
       output = JSON.parse(response)
-      @charactersName << output['name']
+      @characters << output
+    end
+    @planets = []
+    @movie['planets'].each do |planet|
+      url = planet
+      uri = URI(url)
+      response = Net::HTTP.get(uri)
+      output = JSON.parse(response)
+      @planets << output
     end
     render :film
   end

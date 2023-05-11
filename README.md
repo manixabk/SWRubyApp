@@ -1,24 +1,13 @@
 # README
+SWRubyApp is a Web App to test Ruby on Rails, it uses the https://swapi.dev/ to get the data about Star Wars.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Requirements to run the App :
 
-Things you may want to cover:
+- Node.js v18.13.0
+- Rails 7.0.4.3
+- Ruby 3.2.2
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+To start the App use the following commands :
+- bundle install
+- rails db:migrate
+- rails server

@@ -7,11 +7,37 @@
         <p>Release Date : <%= @movie['release_date']%></p>
         <h3>Opening Crawl</h3>
         <p><%= @movie['opening_crawl']%></p>
-        <%= link_to "Back", :back, class:"btn btn-primary float-right" %>
+        <%= link_to "Back to films", starwars_films_path, class:"btn btn-primary float-right" %>
     </div>
-
-    <h2>Characters : </h2>
-    <% @charactersName.each do |charName| %>
-    <%= charName %><br/>
-<% end %>
+    <div class="row">
+        <% if @characters.count > 0 %>
+            <div class="col-md-3">
+                <h2>Characters : </h2>
+                <table class="table">
+                    <tbody>
+                        <% @characters.each do |character| %>
+                            <tr>
+                                <td><%= link_to character['name'], get_character_info_path(character: character) %></td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        <% end %>
+        <% if @planets.count > 0 %>
+            <div class="col-md-3">
+               <h2>Planets : </h2>
+               <table class="table">
+                    <tbody>
+                        <% @planets.each do |planet| %>
+                            <tr>
+                                <td><%= link_to planet['name'], get_planet_info_path(planet: planet) %></td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        <% end %>
+        
+    </div>  
 </div>
