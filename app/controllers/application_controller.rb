@@ -16,4 +16,11 @@ class ApplicationController < ActionController::Base
 	    @output = JSON.parse(@response)
 	    @characters = @output['results']
  	end
+ 	def getPlanets
+ 		@url = 'https://swapi.dev/api/planets/'
+	    @uri = URI(@url)
+	    @response = Net::HTTP.get(@uri)
+	    @output = JSON.parse(@response)
+	    @planets = @output['results']
+ 	end
 end

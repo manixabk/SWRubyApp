@@ -11,13 +11,21 @@ class FilmsController < ApplicationController
   end
   def get_movie_info
     @movie = params[:movie]
-    @charactersName = []
+    @characters = []
     @movie['characters'].each do |character|
       url = character
       uri = URI(url)
       response = Net::HTTP.get(uri)
       output = JSON.parse(response)
-      @charactersName << output['name']
+      @characters << output
+    end
+    @planets = []
+    @movie['planets'].each do |planet|
+      url = planet
+      uri = URI(url)
+      response = Net::HTTP.get(uri)
+      output = JSON.parse(response)
+      @planets << output
     end
     render :film
   end
