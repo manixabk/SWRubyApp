@@ -1,0 +1,17 @@
+<div>
+    <div class="container-fluid text-sm-center p-5 bg-light"> <!-- bg-light is background color & p-5 is padding -->
+        <h1 class="display-2"><%= @movie['title'] %></h1>
+        <p>Episode : <%= @movie['episode_id']%></p>
+        <p>Director : <%= @movie['director']%></p>
+        <p>Producer : <%= @movie['producer']%></p>
+        <p>Release Date : <%= @movie['release_date']%></p>
+        <h3>Opening Crawl</h3>
+        <p><%= @movie['opening_crawl']%></p>
+        <%= link_to "Back", :back, class:"btn btn-primary float-right" %>
+    </div>
+
+    <h2>Characters : </h2>
+    <% @charactersName.each do |charName| %>
+    <%= charName %><br/>
+<% end %>
+</div>
