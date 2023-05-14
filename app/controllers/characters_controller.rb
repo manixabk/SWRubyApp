@@ -16,6 +16,24 @@ class CharactersController < ApplicationController
       @movies << callToAPI(movie)
     end
     @planet = callToAPI(@character['homeworld'])
+    @species = []
+    if !@character['species'].nil?
+      @character['species'].map do |specie|
+        @species << callToAPI(specie)
+      end
+    end
+    @vehicles = []
+    if !@character['vehicles'].nil?
+      @character['vehicles'].map do |vehicle|
+        @vehicles << callToAPI(vehicle)
+      end
+    end
+    @spaceships = []
+    if !@character['starships'].nil?
+      @character['starships'].map do |spaceship|
+        @spaceships << callToAPI(spaceship)
+      end
+    end
     render :character
   end
 end

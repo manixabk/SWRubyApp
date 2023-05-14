@@ -28,6 +28,15 @@
         <% if @movies.count > 0 %>
             <div class="col-md-3">
                 <h2>Films : </h2>
+                <table class="table">
+                    <tbody>
+                        <% @movies.each do |movie| %>
+                            <tr>
+                                <td><%= link_to movie['title'], get_movie_info_path(movie: movie) %></td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
             </div>
         <% end %>
     </div>  

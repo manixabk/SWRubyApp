@@ -38,6 +38,48 @@
                 </table>
             </div>
         <% end %>
+        <% if @spaceships.count > 0 %>
+            <div class="col-md-3">
+               <h2>Spaceships : </h2>
+               <table class="table">
+                    <tbody>
+                        <% @spaceships.each do |spaceship| %>
+                            <tr>
+                                <td><%= link_to spaceship['name'], get_spaceship_info_path(spaceship: spaceship) %></td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        <% end %>
+       <% if @vehicles.count > 0 %>
+            <div class="col-md-3">
+               <h2>Vehicles : </h2>
+               <table class="table">
+                    <tbody>
+                        <% @vehicles.each do |vehicle| %>
+                            <tr>
+                                <td><%= link_to vehicle['name'], get_vehicle_info_path(vehicle: vehicle) %></td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        <% end %>
+        <% if @species.count > 0 %>
+            <div class="col-md-3">
+               <h2>Species : </h2>
+               <table class="table">
+                    <tbody>
+                        <% @species.each do |specie| %>
+                            <tr>
+                                <td><%= link_to specie['name'], get_specie_info_path(specie: specie) %></td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        <% end %>
         
     </div>  
 </div>

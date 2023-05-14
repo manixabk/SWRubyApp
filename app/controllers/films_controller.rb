@@ -19,6 +19,18 @@ class FilmsController < ApplicationController
     @movie['planets'].map do |planet|
       @planets << callToAPI(planet)
     end
+    @spaceships = []
+    @movie['starships'].map do |spaceship|
+      @spaceships << callToAPI(spaceship)
+    end
+    @vehicles = []
+    @movie['vehicles'].map do |vehicle|
+      @vehicles << callToAPI(vehicle)
+    end
+    @species = []
+    @movie['species'].map do |specie|
+      @species << callToAPI(specie)
+    end
     render :film
   end
 end
