@@ -1,20 +1,3 @@
 <%= render 'home/starwarsBar' %>
-<h1>List of Star Wars planets</h1>
-<table class="table table-dark table-striped">
-	<thead>
-		<tr>
-			<th class="text-center"><%= link_to "Name", :sort => "name"%></th>
-			<th class="text-center"><%= link_to "Climate", :sort => "climate"%></th>
-			<th class="text-center"><%= link_to "Population", :sort => "population"%></th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @planets.each do |planet| %>
-		<tr>
-			<td><%= link_to planet['name'], get_planet_info_path(planet: planet) %></td>
-			<td class="text-center"><%= planet['climate'] %></td>
-			<td class="text-center"><%= planet['population'] %></td>
-		</tr>
-		<% end %>
-	</tbody>
-</table>
+<h1>List of Star Wars Planets</h1>
+<%= render 'planets/planets' %>

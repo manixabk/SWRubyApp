@@ -3,24 +3,28 @@ class ApplicationController < ActionController::Base
 	require 'net/http'
   	require 'json'
 	def getMovies
-	    @url = 'https://swapi.dev/api/films/'
-	    @uri = URI(@url)
-	    @response = Net::HTTP.get(@uri)
-	    @output = JSON.parse(@response)
-	    @movies = @output['results']
+	    @movies = callToAPI('https://swapi.dev/api/films/')['results']
  	end
  	def getCharacters
- 		@url = 'https://swapi.dev/api/people/'
-	    @uri = URI(@url)
-	    @response = Net::HTTP.get(@uri)
-	    @output = JSON.parse(@response)
-	    @characters = @output['results']
+	    @characters = callToAPI('https://swapi.dev/api/people/')['results']
  	end
  	def getPlanets
- 		@url = 'https://swapi.dev/api/planets/'
-	    @uri = URI(@url)
-	    @response = Net::HTTP.get(@uri)
-	    @output = JSON.parse(@response)
-	    @planets = @output['results']
+	    @planets = callToAPI('https://swapi.dev/api/planets/')['results']
+ 	end
+ 	def getSpecies
+	    @species = callToAPI('https://swapi.dev/api/species/')['results']
+ 	end
+ 	def getStarships
+	    @spaceships = callToAPI('https://swapi.dev/api/starships/')['results']
+ 	end
+ 	def getVehicles
+	    @vehicles = callToAPI('https://swapi.dev/api/vehicles/')['results']
+ 	end
+ 	def callToAPI(url)
+ 		if url && !url.empty?
+	 		uri = URI(url)
+	 		response = Net::HTTP.get(uri)
+	 		JSON.parse(response)
+ 		end
  	end
 end

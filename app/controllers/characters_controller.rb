@@ -12,18 +12,10 @@ class CharactersController < ApplicationController
   def get_character_info
     @character = params[:character]
     @movies = []
-    @character['films'].each do |movie|
-      url = movie
-      uri = URI(url)
-      response = Net::HTTP.get(uri)
-      output = JSON.parse(response)
-      @movies << output
+    @character['films'].map do |movie|
+      @movies << callToAPI(movie)
     end
-    url = @character['homeworld']
-    uri = URI(url)
-    response = Net::HTTP.get(uri)
-    output = JSON.parse(response)
-    @planet = output
+    @planet = callToAPI(@character['homeworld'])
     render :character
   end
 end

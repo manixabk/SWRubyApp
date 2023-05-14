@@ -1,0 +1,51 @@
+<div>
+    <div class="container-fluid text-sm-center p-5 bg-light"> <!-- bg-light is background color & p-5 is padding -->
+        <h1 class="display-2"><%= @spaceship['name'] %></h1>
+        <p>model : <%= @spaceship['model']%></p>
+        <p>manufacturer : <%= @spaceship['manufacturer']%></p>
+        <p>cost_in_credits : <%= @spaceship['cost_in_credits']%></p>
+        <p>length : <%= @spaceship['length']%></p>
+        <p>max_atmosphering_speed : <%= @spaceship['max_atmosphering_speed']%></p>
+        <p>crew : <%= @spaceship['crew']%></p>
+        <p>passengers : <%= @spaceship['passengers']%></p>
+        <p>cargo_capacity : <%= @spaceship['cargo_capacity']%></p>
+        <p>consumables : <%= @spaceship['consumables']%></p>
+        <p>hyperdrive_rating : <%= @spaceship['hyperdrive_rating']%></p>
+        <p>MGLT : <%= @spaceship['MGLT']%></p>
+        <p>starship_class : <%= @spaceship['starship_class']%></p>
+
+
+
+        <%= link_to "Back to spaceships", spaceships_index_path, class:"btn btn-primary float-right" %>
+    </div>
+    <div class="row">
+        <% if @characters.count > 0 %>
+            <div class="col-md-3">
+                <h2>Residents : </h2>
+                <table class="table">
+                    <tbody>
+                        <% @characters.each do |character| %>
+                            <tr>
+                                <td><%= link_to character['name'], get_character_info_path(character: character) %></td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+         <% end %>
+         <% if @movies.count > 0 %>
+            <div class="col-md-3">
+                <h2>Films : </h2>
+                <table class="table">
+                    <tbody>
+                        <% @movies.each do |movie| %>
+                            <tr>
+                                <td><%= link_to movie['title'], get_movie_info_path(movie: movie) %></td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        <% end %>
+    </div>  
+</div>

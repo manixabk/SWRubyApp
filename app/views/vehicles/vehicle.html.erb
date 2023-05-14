@@ -1,0 +1,47 @@
+<div>
+    <div class="container-fluid text-sm-center p-5 bg-light"> <!-- bg-light is background color & p-5 is padding -->
+        <h1 class="display-2"><%= @vehicle['name'] %></h1>
+        <p>model : <%= @vehicle['model']%></p>
+        <p>manufacturer : <%= @vehicle['manufacturer']%></p>
+        <p>cost_in_credits : <%= @vehicle['cost_in_credits']%></p>
+        <p>length : <%= @vehicle['length']%></p>
+        <p>max_atmosphering_speed : <%= @vehicle['max_atmosphering_speed']%></p>
+        <p>crew : <%= @vehicle['crew']%></p>
+        <p>passengers : <%= @vehicle['passengers']%></p>
+        <p>cargo_capacity : <%= @vehicle['cargo_capacity']%></p>
+        <p>consumables : <%= @vehicle['consumables']%></p>
+        <p>vehicle_class : <%= @vehicle['vehicle_class']%></p>
+        <%= link_to "Back to vehicles", vehicles_index_path, class:"btn btn-primary float-right" %>
+    </div>
+    <div class="row">
+        <% if @characters.count > 0 %>
+            <div class="col-md-3">
+                <h2>Pilots : </h2>
+                <table class="table">
+                    <tbody>
+                        <% @characters.each do |character| %>
+                            <tr>
+                                <td><%= link_to character['name'], get_character_info_path(character: character) %></td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        <% end %>
+        <% if @movies.count>0 %>
+            <div class="col-md-3">
+                <h2>Films : </h2>
+                <table class="table">
+                    <tbody>
+                        <% @movies.each do |movie| %>
+                            <tr>
+                                <td><%= link_to movie['title'], get_movie_info_path(movie: movie) %></td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        <% end %>
+        
+    </div>  
+</div>

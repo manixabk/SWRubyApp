@@ -11,20 +11,24 @@
         <%= link_to "Back to planets", planets_index_path, class:"btn btn-primary float-right" %>
     </div>
     <div class="row">
-        <div class="col-md-3">
-            <h2>Residents : </h2>
-            <table class="table">
-                <tbody>
-                    <% @characters.each do |character| %>
-                        <tr>
-                            <td><%= link_to character['name'], get_character_info_path(character: character) %></td>
-                        </tr>
-                    <% end %>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-md-6">
-           <h2>Films : </h2>
-        </div>
+        <% if @characters.count > 0 %>
+            <div class="col-md-3">
+                <h2>Residents : </h2>
+                <table class="table">
+                    <tbody>
+                        <% @characters.each do |character| %>
+                            <tr>
+                                <td><%= link_to character['name'], get_character_info_path(character: character) %></td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        <% end %>
+        <% if @movies.count > 0 %>
+            <div class="col-md-3">
+                <h2>Films : </h2>
+            </div>
+        <% end %>
     </div>  
 </div>

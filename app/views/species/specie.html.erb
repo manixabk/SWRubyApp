@@ -1,0 +1,48 @@
+<div>
+    <div class="container-fluid text-sm-center p-5 bg-light"> <!-- bg-light is background color & p-5 is padding -->
+        <h1 class="display-2"><%= @specie['name'] %></h1>
+        <p>Classification : <%= @specie['classification']%></p>
+        <p>Designation : <%= @specie['designation']%></p>
+        <p>Average height : <%= @specie['average_height']%></p>
+        <p>Skin colors : <%= @specie['skin_colors']%></p>
+        <p>Hair colors : <%= @specie['hair_colors']%></p>
+        <p>Eye colors : <%= @specie['eye_colors']%></p>
+        <p>Average lifespan : <%= @specie['average_lifespan']%></p>
+        <% if !@planet.nil? %>
+            <p>Homeworld : <%= link_to @planet['name'], get_planet_info_path(planet: @planet) %></p>
+        <% end %>
+        <p>Language : <%= @specie['language']%></p>
+        <%= link_to "Back to species", species_index_path, class:"btn btn-primary float-right" %>
+    </div>
+    <div class="row">
+        <% if @characters.count > 0 %>
+            <div class="col-md-3">
+                <h2>People : </h2>
+                <table class="table">
+                    <tbody>
+                        <% @characters.each do |character| %>
+                            <tr>
+                                <td><%= link_to character['name'], get_character_info_path(character: character) %></td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        <% end %>
+        <% if @movies.count>0 %>
+            <div class="col-md-3">
+                <h2>Films : </h2>
+                <table class="table">
+                    <tbody>
+                        <% @movies.each do |movie| %>
+                            <tr>
+                                <td><%= link_to movie['title'], get_movie_info_path(movie: movie) %></td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        <% end %>
+        
+    </div>  
+</div>

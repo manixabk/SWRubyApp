@@ -10,12 +10,15 @@ class PlanetsController < ApplicationController
   def get_planet_info
     @planet = params[:planet]
     @characters = []
-    @planet['residents'].each do |character|
-      url = character
-      uri = URI(url)
-      response = Net::HTTP.get(uri)
-      output = JSON.parse(response)
-      @characters << output
+    residents = @planet['residents']
+    if !residents.nil?
+      @planet['residents'].map do |character|
+        @characters << callToAPI(character)
+      end
+    end
+    @movies = []
+    @planet['films'].map do |movie|
+      @movies << callToAPI(movie)
     end
     render :planet
   end
