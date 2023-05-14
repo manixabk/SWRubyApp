@@ -12,20 +12,24 @@ class FilmsController < ApplicationController
   def get_movie_info
     @movie = params[:movie]
     @characters = []
-    @movie['characters'].each do |character|
-      url = character
-      uri = URI(url)
-      response = Net::HTTP.get(uri)
-      output = JSON.parse(response)
-      @characters << output
+    @movie['characters'].map do |character|
+      @characters << callToAPI(character)
     end
     @planets = []
-    @movie['planets'].each do |planet|
-      url = planet
-      uri = URI(url)
-      response = Net::HTTP.get(uri)
-      output = JSON.parse(response)
-      @planets << output
+    @movie['planets'].map do |planet|
+      @planets << callToAPI(planet)
+    end
+    @spaceships = []
+    @movie['starships'].map do |spaceship|
+      @spaceships << callToAPI(spaceship)
+    end
+    @vehicles = []
+    @movie['vehicles'].map do |vehicle|
+      @vehicles << callToAPI(vehicle)
+    end
+    @species = []
+    @movie['species'].map do |specie|
+      @species << callToAPI(specie)
     end
     render :film
   end

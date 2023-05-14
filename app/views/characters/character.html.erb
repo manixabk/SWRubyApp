@@ -12,22 +12,61 @@
         <%= link_to "Back to characters", characters_index_path, class:"btn btn-primary float-right" %>
     </div>
     <div class="row">
-    	<% if @movies.count>0 %>
-        <div class="col-md-3">
-            <h2>Films : </h2>
-            <table class="table">
-                <tbody>
-                    <% @movies.each do |movie| %>
-                        <tr>
-                            <td><%= link_to movie['title'], get_movie_info_path(movie: movie) %></td>
-                        </tr>
-                    <% end %>
-                </tbody>
-            </table>
-        </div>
+    	<% if @movies.count > 0 %>
+            <div class="col-md-3">
+                <h2>Films : </h2>
+                <table class="table">
+                    <tbody>
+                        <% @movies.each do |movie| %>
+                            <tr>
+                                <td><%= link_to movie['title'], get_movie_info_path(movie: movie) %></td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
         <% end %>
-        <div class="col-md-6">
-           <h2>Starships : </h2>
-        </div>
+        <% if @species.count > 0 %>
+            <div class="col-md-3">
+                <h2>Species : </h2>
+                <table class="table">
+                    <tbody>
+                        <% @species.each do |specie| %>
+                            <tr>
+                                <td><%= link_to specie['name'], get_specie_info_path(specie: specie) %></td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        <% end %>
+        <% if @vehicles.count > 0 %>
+            <div class="col-md-3">
+                <h2>Vehicles : </h2>
+                <table class="table">
+                    <tbody>
+                        <% @vehicles.each do |vehicle| %>
+                            <tr>
+                                <td><%= link_to vehicle['name'], get_vehicle_info_path(vehicle: vehicle) %></td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        <% end %>
+        <% if @spaceships.count > 0 %>
+            <div class="col-md-3">
+                <h2>Spaceships : </h2>
+                <table class="table">
+                    <tbody>
+                        <% @spaceships.each do |spaceship| %>
+                            <tr>
+                                <td><%= link_to spaceship['name'], get_spaceship_info_path(spaceship: spaceship) %></td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        <% end %>
     </div>  
 </div>

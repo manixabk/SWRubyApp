@@ -12,6 +12,12 @@ class SearchController < ApplicationController
       @characters = @characters.select{|character| character['name'].downcase.include?(@tag)}
       getPlanets
       @planets = @planets.select{|planet| planet['name'].downcase.include?(@tag)}
+      getSpecies
+      @species = @species.select{|specie| specie['name'].downcase.include?(@tag)}
+      getStarships
+      @spaceships = @spaceships.select{|spaceship| spaceship['name'].downcase.include?(@tag)}
+      getVehicles
+      @vehicles = @vehicles.select{|vehicle| vehicle['name'].downcase.include?(@tag)}
     end
     render :search
   end

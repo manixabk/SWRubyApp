@@ -1,14 +1,22 @@
 <div>
     <div class="container-fluid text-sm-center p-5 bg-light"> <!-- bg-light is background color & p-5 is padding -->
-        <h1 class="display-2"><%= @planet['name'] %></h1>
-        <p>Rotation period : <%= @planet['rotation_period']%></p>
-        <p>Orbital period : <%= @planet['orbital_period']%></p>
-        <p>Diameter : <%= @planet['diameter']%></p>
-        <p>Climate : <%= @planet['climate']%></p>
-        <p>Gravity : <%= @planet['terrain']%></p>
-        <p>Terrain water : <%= @planet['surface_water']%></p>
-        <p>Population : <%= @planet['population']%></p>
-        <%= link_to "Back to planets", planets_index_path, class:"btn btn-primary float-right" %>
+        <h1 class="display-2"><%= @spaceship['name'] %></h1>
+        <p>Model : <%= @spaceship['model']%></p>
+        <p>Manufacturer : <%= @spaceship['manufacturer']%></p>
+        <p>Cost in credits : <%= @spaceship['cost_in_credits']%></p>
+        <p>Length : <%= @spaceship['length']%></p>
+        <p>Max atmosphering speed : <%= @spaceship['max_atmosphering_speed']%></p>
+        <p>Crew : <%= @spaceship['crew']%></p>
+        <p>Passengers : <%= @spaceship['passengers']%></p>
+        <p>Cargo capacity : <%= @spaceship['cargo_capacity']%></p>
+        <p>Consumables : <%= @spaceship['consumables']%></p>
+        <p>Hyperdrive rating : <%= @spaceship['hyperdrive_rating']%></p>
+        <p>MGLT : <%= @spaceship['MGLT']%></p>
+        <p>Starship class : <%= @spaceship['starship_class']%></p>
+
+
+
+        <%= link_to "Back to spaceships", spaceships_index_path, class:"btn btn-primary float-right" %>
     </div>
     <div class="row">
         <% if @characters.count > 0 %>
@@ -24,8 +32,8 @@
                     </tbody>
                 </table>
             </div>
-        <% end %>
-        <% if @movies.count > 0 %>
+         <% end %>
+         <% if @movies.count > 0 %>
             <div class="col-md-3">
                 <h2>Films : </h2>
                 <table class="table">

@@ -1,19 +1,22 @@
 <div>
     <div class="container-fluid text-sm-center p-5 bg-light"> <!-- bg-light is background color & p-5 is padding -->
-        <h1 class="display-2"><%= @planet['name'] %></h1>
-        <p>Rotation period : <%= @planet['rotation_period']%></p>
-        <p>Orbital period : <%= @planet['orbital_period']%></p>
-        <p>Diameter : <%= @planet['diameter']%></p>
-        <p>Climate : <%= @planet['climate']%></p>
-        <p>Gravity : <%= @planet['terrain']%></p>
-        <p>Terrain water : <%= @planet['surface_water']%></p>
-        <p>Population : <%= @planet['population']%></p>
-        <%= link_to "Back to planets", planets_index_path, class:"btn btn-primary float-right" %>
+        <h1 class="display-2"><%= @vehicle['name'] %></h1>
+        <p>Model : <%= @vehicle['model']%></p>
+        <p>Manufacturer : <%= @vehicle['manufacturer']%></p>
+        <p>Cost in credits : <%= @vehicle['cost_in_credits']%></p>
+        <p>Length : <%= @vehicle['length']%></p>
+        <p>Max atmosphering speed : <%= @vehicle['max_atmosphering_speed']%></p>
+        <p>Crew : <%= @vehicle['crew']%></p>
+        <p>Passengers : <%= @vehicle['passengers']%></p>
+        <p>Cargo capacity : <%= @vehicle['cargo_capacity']%></p>
+        <p>Consumables : <%= @vehicle['consumables']%></p>
+        <p>Vehicle_class : <%= @vehicle['vehicle_class']%></p>
+        <%= link_to "Back to vehicles", vehicles_index_path, class:"btn btn-primary float-right" %>
     </div>
     <div class="row">
         <% if @characters.count > 0 %>
             <div class="col-md-3">
-                <h2>Residents : </h2>
+                <h2>Pilots : </h2>
                 <table class="table">
                     <tbody>
                         <% @characters.each do |character| %>
@@ -25,7 +28,7 @@
                 </table>
             </div>
         <% end %>
-        <% if @movies.count > 0 %>
+        <% if @movies.count>0 %>
             <div class="col-md-3">
                 <h2>Films : </h2>
                 <table class="table">
@@ -39,5 +42,6 @@
                 </table>
             </div>
         <% end %>
+        
     </div>  
 </div>
