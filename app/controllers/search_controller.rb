@@ -6,17 +6,11 @@ class SearchController < ApplicationController
       redirect_to starwars_films_path and return
     else
       @tag = params[:query].downcase
-      getMovies
       @movies = filter(@movies, @tag)
-      getCharacters
       @characters = filter(@characters, @tag)
-      getPlanets
       @planets = filter(@planets, @tag)
-      getSpecies
       @species = filter(@species, @tag)
-      getStarships
       @spaceships = filter(@spaceships, @tag)
-      getVehicles
       @vehicles = filter(@vehicles, @tag)
     end
     render :search

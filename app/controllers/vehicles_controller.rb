@@ -1,10 +1,8 @@
 class VehiclesController < ApplicationController
   before_action :authenticate_user!
   def index
-    getVehicles
     if params[:sort].present?
-      sort_param = params[:sort].downcase
-      @vehicles.sort_by! { |vehicle| vehicle[sort_param] }
+      sort(getVehicles, params[:sort])
     end
   end
   def get_vehicle_info

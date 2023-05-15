@@ -1,10 +1,8 @@
 class SpeciesController < ApplicationController
   before_action :authenticate_user!
   def index
-    getSpecies
     if params[:sort].present?
-      sort_param = params[:sort].downcase
-      @species.sort_by! { |specie| specie[sort_param] }
+      sort(getSpecies, params[:sort])
     end
   end
   def get_specie_info

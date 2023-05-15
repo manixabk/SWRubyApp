@@ -1,10 +1,8 @@
 class SpaceshipsController < ApplicationController
   before_action :authenticate_user!
   def index
-    getStarships
     if params[:sort].present?
-      sort_param = params[:sort].downcase
-      @spaceships.sort_by! { |spaceship| spaceship[sort_param] }
+      sort(getStarships, params[:sort])
     end
   end
   def get_spaceship_info

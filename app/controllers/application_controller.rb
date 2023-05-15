@@ -1,39 +1,58 @@
 class ApplicationController < ActionController::Base
-	before_action :authenticate_user!
+	before_action :authenticate_user!, :init_data
 	require 'net/http'
   	require 'json'
+  	BASEURL = 'https://swapi.py4e.com/api/'
 	def getMovies
-	    @movies = callToAPI('https://swapi.dev/api/films/')['results']
+	    @movies = callToAPI(BASEURL + 'films/')['results']
  	end
  	def getCharacters
-	    @characters = callToAPI('https://swapi.dev/api/people/')['results']
+	    @characters = callToAPI(BASEURL + 'people/')['results']
  	end
  	def getPlanets
-	    @planets = callToAPI('https://swapi.dev/api/planets/')['results']
+	    @planets = callToAPI(BASEURL + 'planets/')['results']
  	end
  	def getSpecies
-	    @species = callToAPI('https://swapi.dev/api/species/')['results']
+	    @species = callToAPI(BASEURL + 'species/')['results']
  	end
  	def getStarships
-	    @spaceships = callToAPI('https://swapi.dev/api/starships/')['results']
+	    @spaceships = callToAPI(BASEURL + 'starships/')['results']
  	end
  	def getVehicles
-	    @vehicles = callToAPI('https://swapi.dev/api/vehicles/')['results']
+	    @vehicles = callToAPI(BASEURL + 'vehicles/')['results']
  	end
  	def callToAPI(url)
- 		if url && !url.empty?
-	 		uri = URI(url)
-	 		response = Net::HTTP.get(uri)
-	 		JSON.parse(response)
- 		end
- 	end
+	  if url && !url.empty?
+	    begin
+	      uri = URI(url)
+	      response = Net::HTTP.get(uri)
+	      JSON.parse(response)
+	    rescue StandardError => e
+	      Rails.logger.error("Error calling API: #{e.message}")
+	      []
+	    end
+	  else
+	    []
+	  end
+	end
  	def get_specific_data(urls)
-    data = []
-    if !urls.nil?
-      urls.map do |link|
-        data << callToAPI(link)
-      end
-    end
-    return data
-  end
+	    data = []
+	    if !urls.nil?
+	      urls.map do |link|
+	        data << callToAPI(link)
+	      end
+	    end
+	    return data
+  	end
+  	def sort(array, sort_param)
+	    array.sort_by! { |object| object[sort_param] }
+  	end
+  	def init_data
+  		getMovies
+  		getCharacters
+  		getPlanets
+  		getSpecies
+  		getStarships
+  		getVehicles
+  	end
 end

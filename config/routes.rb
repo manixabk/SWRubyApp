@@ -7,6 +7,14 @@ Rails.application.routes.draw do
   get 'characters/index'
   get 'films/index', to: 'films#index', as: 'starwars/films'
   devise_for :users
+  devise_scope :user do
+    authenticated :user do
+      root to: 'films#index', as: :authenticated_root
+    end
+    unauthenticated do
+      root to: 'devise/sessions#new', as: :unauthenticated_root
+    end
+  end
   root 'home#index'
   get 'home/starwars'
   get '/get_movie_info', to: 'films#get_movie_info', as: 'get_movie_info'

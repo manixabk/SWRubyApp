@@ -1,10 +1,8 @@
 class FilmsController < ApplicationController
   before_action :authenticate_user!
   def index
-    getMovies
     if params[:sort].present?
-      sort_param = params[:sort].downcase
-      @movies.sort_by! { |movie| movie[sort_param] }
+      sort(@movies, params[:sort])
     end
   end
   def film

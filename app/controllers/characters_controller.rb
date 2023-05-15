@@ -1,10 +1,8 @@
 class CharactersController < ApplicationController
   before_action :authenticate_user!
   def index
-    getCharacters
     if params[:sort].present?
-      sort_param = params[:sort].downcase
-      @characters.sort_by! { |character| character[sort_param] }
+      sort(@characters, params[:sort])
     end
   end
   def character
