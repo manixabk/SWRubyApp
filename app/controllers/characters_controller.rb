@@ -11,29 +11,11 @@ class CharactersController < ApplicationController
   end
   def get_character_info
     @character = params[:character]
-    @movies = []
-    @character['films'].map do |movie|
-      @movies << callToAPI(movie)
-    end
+    @movies = get_specific_data(@character['films'])
     @planet = callToAPI(@character['homeworld'])
-    @species = []
-    if !@character['species'].nil?
-      @character['species'].map do |specie|
-        @species << callToAPI(specie)
-      end
-    end
-    @vehicles = []
-    if !@character['vehicles'].nil?
-      @character['vehicles'].map do |vehicle|
-        @vehicles << callToAPI(vehicle)
-      end
-    end
-    @spaceships = []
-    if !@character['starships'].nil?
-      @character['starships'].map do |spaceship|
-        @spaceships << callToAPI(spaceship)
-      end
-    end
+    @species = get_specific_data(@character['species'])
+    @vehicles = get_specific_data(@character['vehicles'])
+    @spaceships = get_specific_data(@character['starships'])
     render :character
   end
 end

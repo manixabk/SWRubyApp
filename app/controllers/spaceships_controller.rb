@@ -9,16 +9,8 @@ class SpaceshipsController < ApplicationController
   end
   def get_spaceship_info
     @spaceship = params[:spaceship]
-    @characters = []
-    if !@spaceship['pilots'].nil?
-      @spaceship['pilots'].map do |character|
-        @characters << callToAPI(character)
-      end
-    end
-    @movies = []
-    @spaceship['films'].map do |movie|
-      @movies << callToAPI(movie)
-    end
+    @characters = get_specific_data(@spaceship['pilots'])
+    @movies = get_specific_data(@spaceship['films'])
     render :spaceship
   end
 end

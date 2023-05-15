@@ -5,20 +5,26 @@ class SearchController < ApplicationController
     if params[:query].blank? || params[:query].nil?
       redirect_to starwars_films_path and return
     else
-      @tag = params[:query]
+      @tag = params[:query].downcase
       getMovies
-      @movies = @movies.select{|movie| movie['title'].downcase.include?(@tag)}
+      @movies = filter(@movies, @tag)
       getCharacters
-      @characters = @characters.select{|character| character['name'].downcase.include?(@tag)}
+      @characters = filter(@characters, @tag)
       getPlanets
-      @planets = @planets.select{|planet| planet['name'].downcase.include?(@tag)}
+      @planets = filter(@planets, @tag)
       getSpecies
-      @species = @species.select{|specie| specie['name'].downcase.include?(@tag)}
+      @species = filter(@species, @tag)
       getStarships
-      @spaceships = @spaceships.select{|spaceship| spaceship['name'].downcase.include?(@tag)}
+      @spaceships = filter(@spaceships, @tag)
       getVehicles
-      @vehicles = @vehicles.select{|vehicle| vehicle['name'].downcase.include?(@tag)}
+      @vehicles = filter(@vehicles, @tag)
     end
     render :search
+  end
+  def filter(data, tag)
+    filteredData = data.select do |object|
+      object.values.any? { |value| value.to_s.downcase.include?(tag) }
+    end
+    return filteredData
   end
 end

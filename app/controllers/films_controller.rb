@@ -11,26 +11,11 @@ class FilmsController < ApplicationController
   end
   def get_movie_info
     @movie = params[:movie]
-    @characters = []
-    @movie['characters'].map do |character|
-      @characters << callToAPI(character)
-    end
-    @planets = []
-    @movie['planets'].map do |planet|
-      @planets << callToAPI(planet)
-    end
-    @spaceships = []
-    @movie['starships'].map do |spaceship|
-      @spaceships << callToAPI(spaceship)
-    end
-    @vehicles = []
-    @movie['vehicles'].map do |vehicle|
-      @vehicles << callToAPI(vehicle)
-    end
-    @species = []
-    @movie['species'].map do |specie|
-      @species << callToAPI(specie)
-    end
+    @characters = get_specific_data(@movie['characters'])
+    @planets = get_specific_data(@movie['planets'])
+    @spaceships = get_specific_data(@movie['starships'])
+    @vehicles = get_specific_data(@movie['vehicles'])
+    @species = get_specific_data(@movie['species'])
     render :film
   end
 end

@@ -9,16 +9,8 @@ class VehiclesController < ApplicationController
   end
   def get_vehicle_info
     @vehicle = params[:vehicle]
-    @characters = []
-    if !@vehicle['pilots'].nil?
-      @vehicle['pilots'].map do |character|
-        @characters << callToAPI(character)
-      end
-    end
-    @movies = []
-    @vehicle['films'].map do |movie|
-      @movies << callToAPI(movie)
-    end
+    @characters = get_specific_data(@vehicle['pilots'])
+    @movies = get_specific_data(vehicle['films'])
     render :vehicle
   end
 end

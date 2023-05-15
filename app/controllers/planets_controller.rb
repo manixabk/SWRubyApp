@@ -9,17 +9,8 @@ class PlanetsController < ApplicationController
   end
   def get_planet_info
     @planet = params[:planet]
-    @characters = []
-    residents = @planet['residents']
-    if !residents.nil?
-      @planet['residents'].map do |character|
-        @characters << callToAPI(character)
-      end
-    end
-    @movies = []
-    @planet['films'].map do |movie|
-      @movies << callToAPI(movie)
-    end
+    @characters = get_specific_data(@planet['residents'])
+    @movies = get_specific_data(@planet['films'])
     render :planet
   end
 end

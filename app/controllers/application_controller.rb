@@ -27,4 +27,13 @@ class ApplicationController < ActionController::Base
 	 		JSON.parse(response)
  		end
  	end
+ 	def get_specific_data(urls)
+    data = []
+    if !urls.nil?
+      urls.map do |link|
+        data << callToAPI(link)
+      end
+    end
+    return data
+  end
 end

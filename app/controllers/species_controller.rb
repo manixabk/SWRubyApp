@@ -10,14 +10,8 @@ class SpeciesController < ApplicationController
   def get_specie_info
     @specie = params[:specie]
     @planet = callToAPI(@specie['homeworld'])
-    @characters = []
-    @specie['people'].map do |character|
-      @characters << callToAPI(character)
-    end
-    @movies = []
-    @specie['films'].map do |movie|
-      @movies << callToAPI(movie)
-    end
+    @characters = get_specific_data(@specie['people'])
+    @movies = get_specific_data(@specie['films'])
     render :specie
   end
 end
