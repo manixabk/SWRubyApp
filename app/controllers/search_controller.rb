@@ -16,9 +16,12 @@ class SearchController < ApplicationController
     render :search
   end
   def filter(data, tag)
-    filteredData = data.select do |object|
-      object.values.any? { |value| value.to_s.downcase.include?(tag) }
+    if !data.nil?
+      filteredData = data.select do |object|
+        object.values.any? { |value| value.to_s.downcase.include?(tag) }
+      end
+      return filteredData
     end
-    return filteredData
+    return []
   end
 end

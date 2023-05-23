@@ -20,8 +20,8 @@
       <% end %>
       <br/>
     <%= yield %>
-    <% unless current_page?(root_path) %>
-    <%= link_to "Back", :back, class:'btn btn-primary' %>
+    <% user_signed_in? && unless current_page?(root_path) %>
+      <%= link_to "Back", :back, class:'btn btn-primary' %>
     <% end %>
   </div>
  

@@ -1,18 +1,23 @@
-<table class="table table-dark table-striped">
-	<thead>
-		<tr>
-			<th class="text-center"><%= link_to "Title", :sort => "title"%></th>
-			<th class="text-center"><%= link_to "Episode", :sort => "episode_id"%></th>
-			<th class="text-center"><%= link_to "Release Date", :sort => "release_date"%></th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @movies.each do |movie| %>
-		<tr>
-			<td><%= link_to movie['title'], get_movie_info_path(movie: movie) %></td>
-			<td class="text-center"><%= movie['episode_id'] %></td>
-			<td class="text-center"><%= movie['release_date'] %></td>
-		</tr>
-		<% end %>
-	</tbody>
-</table> 
+<% if !@movies.nil? %>
+	<table class="table table-dark table-striped">
+		<thead>
+			<tr>
+				<th class="text-center"><%= link_to "Title", :sort => "title"%></th>
+				<th class="text-center"><%= link_to "Episode", :sort => "episode_id"%></th>
+				<th class="text-center"><%= link_to "Release Date", :sort => "release_date"%></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @movies.each do |movie| %>
+				<tr>
+					<td><%= link_to movie['title'], get_movie_info_path(movie: movie) %></td>
+					<td class="text-center"><%= movie['episode_id'] %></td>
+					<td class="text-center"><%= movie['release_date'] %></td>
+				</tr>	
+			<% end %>
+			
+		</tbody>
+	</table>
+<% else %>
+	<h1>NO DATA AVAILABLE</h1>
+<% end %>
